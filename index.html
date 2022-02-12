@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1#motto{
+            background-color: cadetblue;
+            visibility: hidden;
+            padding: 10px;
+        }
+        #motto-cursor{
+            color: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="motto">My name is Merter Gülbahar. I am a software developer!</h1>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            let timeout = 250; //ms
+            let totalTime = displayTextCharByChar(timeout);
+            setInterval(()=>{displayTextCharByChar(timeout)},totalTime + timeout);
+        });
+
+        function displayTextCharByChar(timeout){
+                let totalTime = 0;
+                cursorText = '|';
+                let cursor = '<span id="motto-cursor">'+cursorText+'</span>';
+                let motto = $("#motto");
+                let charList = motto.text().split('');
+                motto.text('');
+                charList.forEach((value,index)=>{
+                    setTimeout(function(){
+                        motto.text(motto.text().replaceAll(cursorText,'')); 
+                        motto.text(motto.text() + value); 
+                        motto.append($.parseHTML(cursor));
+                    },timeout*index);
+                    totalTime = timeout*index;
+                });
+                motto.css("visibility","visible");
+                return totalTime;
+            }
+
+
+    </script>
+</body>
+</html>
