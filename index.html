@@ -27,27 +27,22 @@
             let motto = $("#motto");
             let mottoText = $("#motto-text");
             let timeout = 50; //ms
-            let totalTime = displayTextCharByChar(timeout,motto,mottoText);
-            setInterval(()=>{displayTextCharByChar(timeout,motto,mottoText)},totalTime + timeout);
+            displayTextCharByChar(timeout,motto,mottoText);
         });
 
         function displayTextCharByChar(timeout,motto,mottoText){
                 let totalTime = 0;
+                let text =  mottoText.text();
                 let charList = mottoText.text().split('');
-                charList.forEach((value,index)=>{
-                    mottoText.text('');
-                    setTimeout(function(){
-                        mottoText.text(mottoText.text() + value);
-                    },timeout*index);
-                    totalTime = timeout*index;
-                });
+                let charCount = 0;
+                setInterval(()=>{
+                    charCount = charCount === text.length ? 0 : charCount; 
+                    charCount++;
+                    let char = text.substring(0,charCount);
+                    mottoText.text(char);
+                },timeout);
                 motto.css("visibility","visible");
-                return totalTime;
             }
-
-        
-        
-
 
     </script>
 </body>
