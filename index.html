@@ -17,34 +17,36 @@
     </style>
 </head>
 <body>
-    <h1 id="motto">My name is Merter Gülbahar. I am a software developer!</h1>
+    <h1 id="motto">
+        <span id="motto-text">My name is Merter Gülbahar. I am a software developer!</span><span id="motto-cursor">|</span>
+    </h1>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(function(){
-            let timeout = 250; //ms
-            let totalTime = displayTextCharByChar(timeout);
-            setInterval(()=>{displayTextCharByChar(timeout)},totalTime + timeout);
+            let motto = $("#motto");
+            let mottoText = $("#motto-text");
+            let timeout = 50; //ms
+            let totalTime = displayTextCharByChar(timeout,motto,mottoText);
+            setInterval(()=>{displayTextCharByChar(timeout,motto,mottoText)},totalTime + timeout);
         });
 
-        function displayTextCharByChar(timeout){
+        function displayTextCharByChar(timeout,motto,mottoText){
                 let totalTime = 0;
-                cursorText = '|';
-                let cursor = '<span id="motto-cursor">'+cursorText+'</span>';
-                let motto = $("#motto");
-                let charList = motto.text().split('');
-                motto.text('');
+                let charList = mottoText.text().split('');
                 charList.forEach((value,index)=>{
+                    mottoText.text('');
                     setTimeout(function(){
-                        motto.text(motto.text().replaceAll(cursorText,'')); 
-                        motto.text(motto.text() + value); 
-                        motto.append($.parseHTML(cursor));
+                        mottoText.text(mottoText.text() + value);
                     },timeout*index);
                     totalTime = timeout*index;
                 });
                 motto.css("visibility","visible");
                 return totalTime;
             }
+
+        
+        
 
 
     </script>
