@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        h1#motto{
+        #motto{
             background-color: cadetblue;
-            visibility: hidden;
             padding: 10px;
+        }
+        #motto span{
+            visibility: hidden;
         }
         #motto-cursor{
             color: rebeccapurple;
@@ -37,8 +39,8 @@
                 charCount = charCount === text.length ? 0 : charCount; 
                 charCount++;
                 mottoText.text(text.substring(0,charCount));
+                motto.children("span").css("visibility","visible");
             },timeout);
-            motto.css("visibility","visible");
         }
     </script>
 </body>
