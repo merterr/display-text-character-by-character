@@ -23,27 +23,23 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
-        $(function(){
+        $(()=>{
             let motto = $("#motto");
             let mottoText = $("#motto-text");
-            let timeout = 50; //ms
+            let timeout = 100; //ms
             displayTextCharByChar(timeout,motto,mottoText);
         });
 
         function displayTextCharByChar(timeout,motto,mottoText){
-                let totalTime = 0;
-                let text =  mottoText.text();
-                let charList = mottoText.text().split('');
-                let charCount = 0;
-                setInterval(()=>{
-                    charCount = charCount === text.length ? 0 : charCount; 
-                    charCount++;
-                    let char = text.substring(0,charCount);
-                    mottoText.text(char);
-                },timeout);
-                motto.css("visibility","visible");
-            }
-
+            let text =  mottoText.text();
+            let charCount = 0;
+            setInterval(()=>{
+                charCount = charCount === text.length ? 0 : charCount; 
+                charCount++;
+                mottoText.text(text.substring(0,charCount));
+            },timeout);
+            motto.css("visibility","visible");
+        }
     </script>
 </body>
 </html>
