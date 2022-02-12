@@ -1,2 +1,5 @@
 # display-text-character-by-character
-Show text character by character with jQuery
+Display text character by character with jQuery
+
+Demo:
+https://codepen.io/gmertt/pen/KKyvwag
